@@ -31,26 +31,9 @@ export default class Index
     @lines = new Lines 2000, @renderer.extensions.get('ANGLE_instanced_arrays')
     @scene.add @lines.lines
 
-    # @test = new THREE.Mesh(new THREE.BoxGeometry(10, 10, 10), new THREE.MeshBasicMaterial());
-    # @scene.add @test
-
     window.addEventListener 'resize', @resize
 
     @resize()
-
-
-  setCameraPosTimer: =>
-    setInterval (=> @setCameraPos()), 4000
-    return
-
-
-  setCameraPos: =>
-    rad = Math.PI * 2 * Math.random()
-    @camera.position.x = 200 * Math.cos(rad)
-    @camera.position.y = 400
-    @camera.position.z = 1000 * Math.sin(rad)
-    @camera.lookAt 0, 0, 0
-    return
 
 
   resize: (e = null)=>
