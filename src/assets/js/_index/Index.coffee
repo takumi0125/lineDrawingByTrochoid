@@ -103,10 +103,7 @@ export default class Index
 
     @renderer.setSize @width, @height
 
-    @effectMaterial.uniforms.resolution.value = new THREE.Vector2(
-      Math.round(@width * @renderTargetPixelRatio)
-      Math.round(@height * @renderTargetPixelRatio)
-    )
+    @effectMaterial.uniforms.resolution.value = new THREE.Vector2 @width, @height
     @renderTarget.resize(
       Math.round(@width * @renderTargetPixelRatio)
       Math.round(@height * @renderTargetPixelRatio)
@@ -148,7 +145,6 @@ export default class Index
 
     # 通常のシーンを描画
     @scene.remove @renderTarget.mesh
-    # @scene.add @lines.lines
     @effectMaterial.blending = THREE.NoBlending
     @renderer.render @scene, @camera, @renderTarget.getRenderTarget()
 
@@ -178,12 +174,8 @@ export default class Index
 
       @renderTarget.scene.remove @renderTarget.mesh
       @scene.add @renderTarget.mesh
-      # @scene.remove @lines.lines
       @effectMaterial.blending = THREE.AdditiveBlending
-      @effectMaterial.uniforms.resolution.value = new THREE.Vector2(
-        Math.round(@width * @devicePixelRatio)
-        Math.round(@height * @devicePixelRatio)
-      )
+      @effectMaterial.uniforms.resolution.value = new THREE.Vector2 @width, @height
       @renderer.render @scene, @camera
     else
       @renderer.render @scene, @camera
