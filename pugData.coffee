@@ -5,17 +5,17 @@ config =
 
     showOGP: true # ogpタグを表示するかどうか
 
-    siteTitle: 'line drawing by trochoid'
+    siteTitle: '2D line drawing by trochoid'
     useTitleAsOgTitle: true # ogTitleをtitleと同じにするかどうか
     ogTitle: ''
     useTitleSeparater: true
     titleSeparater: ' | '
 
-    description: "line drawing by trochoid"
+    description: "2D line  drawing by trochoid"
     useDescriptionAsOgDescription: true # ogDescriptionをdescriptionと同じにするかどうか
     ogDescription: ""
 
-    ogSiteName: 'line drawing by trochoid'
+    ogSiteName: '2D line drawing by trochoid'
 
     ogImage: 'https://takumi0125.github.io/lineDrawingByTrochoid/assets/img/ogp2d.png'
     ogImageType: 'image/png'
