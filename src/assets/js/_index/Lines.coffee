@@ -4,7 +4,7 @@ import map from '../_utils/math/map'
 import InstancedBufferGeometryBuilder from './InstancedBufferGeometryBuilder'
 
 export default class Lines
-  constructor: (@numInstances, isSupportedInstancedArray = false)->
+  constructor: (@numInstances, isSupportedInstancedArray = false, @gui)->
     baseBufferGeometry = new THREE.BufferGeometry()
     positions = new Float32Array [0, 0, 0, 1, 0, 0]
     indices = new Uint16Array [0, 1]
@@ -15,9 +15,9 @@ export default class Lines
     @rc = 6
     @rm = 2
     @rd = 1
-    @i = 1
+    @i1 = 1
+    @i2 = 1
     @scale = 1
-    @noiseFactor = 0
     @isOuter = false
     @autoPlay = true
 
@@ -25,15 +25,14 @@ export default class Lines
       vertexShader: require('./_glsl/lines.vert')
       fragmentShader: require('./_glsl/lines.frag')
       transparent: true
-      blending: THREE.AdditiveBlending
       uniforms:
         time       : { type: '1f', value: 0 }
         rc         : { type: '1f', value: @rc }
         rm         : { type: '1f', value: @rm }
         rd         : { type: '1f', value: @rd }
-        i          : { type: '1f', value: @i }
+        i1         : { type: '1f', value: @i1 }
+        i2         : { type: '1f', value: @i2 }
         scale      : { type: '1f', value: @scale }
-        noiseFactor: { type: '1f', value: @noiseFactor }
         isOuter    : { type: '1f', value: (if @isOuter then 1 else 0) }
 
     geometry = geometryBuilder.getBefferGeometry(
@@ -42,8 +41,6 @@ export default class Lines
     )
     @lines = new THREE.LineSegments geometry, @material
 
-
-    @gui = new dat.GUI();
 
     @gui.add(@, 'rc', 0, 1000)
     .listen()
@@ -57,17 +54,17 @@ export default class Lines
     .listen()
     .onChange (value)=> @material.uniforms.rd.value = value
 
-    @gui.add @, 'i', 0, Math.PI
+    @gui.add @, 'i1', 0, Math.PI
     .listen()
-    .onChange (value)=> @material.uniforms.i.value = value
+    .onChange (value)=> @material.uniforms.i1.value = value
+
+    @gui.add @, 'i2', 0, Math.PI
+    .listen()
+    .onChange (value)=> @material.uniforms.i2.value = value
 
     @gui.add @, 'scale', 0, 10
     .listen()
     .onChange (value)=> @material.uniforms.scale.value = value
-
-    @gui.add @, 'noiseFactor', 0, 10
-    .listen()
-    .onChange (value)=> @material.uniforms.noiseFactor.value = value
 
     @gui.add @, 'isOuter'
     .listen()
@@ -101,22 +98,26 @@ export default class Lines
     return
 
 
-  random: (isRegular = false, duration = 0.6)->
-    rmTo = 1 + Math.random() * 49
+  random: (isRegular = true, duration = 0.6)->
+    rmTo = Math.floor(1 + Math.random() * 29)
     if isRegular
-      rcTo = rmTo * Math.floor(2 + Math.random() * 18)
+      rcTo = rmTo * Math.floor(2 + Math.random() * 10)
     else
       rcTo = 1 + Math.random() * 99
+
+    rcTo = Math.floor(rcTo)
 
     return TweenMax.to @, duration, {
       rc: rcTo
       rm: rmTo
-      rd: 1 + Math.random() * 99
-      i: Math.random() * Math.PI
+      rd: Math.floor(1 + Math.random() * 99)
+      i1: Math.random() * Math.PI
+      i2: Math.random() * Math.PI
       ease: Expo.easeOut
       onUpdate: =>
         @material.uniforms.rc.value = @rc
         @material.uniforms.rm.value = @rm
         @material.uniforms.rd.value = @rd
-        @material.uniforms.i.value = @i
+        @material.uniforms.i1.value = @i1
+        @material.uniforms.i2.value = @i2
     }

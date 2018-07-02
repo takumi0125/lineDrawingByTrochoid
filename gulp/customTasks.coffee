@@ -29,5 +29,5 @@ module.exports = (gulp, gulpPlugins, config, utils)->
       "#{config.srcDir}/#{config.assetsDir}/js/_index/**/*"
     ]
     "#{config.publishDir}/#{config.assetsDir}/js"
-    'lines'
+    'lines3d'
   )

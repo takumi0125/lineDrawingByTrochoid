@@ -7,13 +7,12 @@ uniform float time;
 #pragma glslify: hsv2rgb = require('../../_utils/glsl/hsv2rgb.glsl')
 
 varying float vInstanceIndex;
-varying vec3 vRamdomValues;
 
 void main(){
   vec3 color = hsv2rgb(vec3(
-    vInstanceIndex * 0.0003 + time * 0.0001,
-    1.0,
-    0.3
+    vInstanceIndex * 0.0004 + time * 0.0001,
+    0.6,
+    0.9
   ));
 
   gl_FragColor = vec4(color, 1.0);

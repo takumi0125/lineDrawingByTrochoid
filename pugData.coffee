@@ -1,6 +1,6 @@
 config =
   default:
-    siteUrl: 'https://takumi0125.github.io/lineDrawingByTrochoid/2d/'
+    siteUrl: 'https://takumi0125.github.io/lineDrawingByTrochoid/3d/'
     keywords: 'webgl, threejs, geometry, trochoid'
 
     showOGP: true # ogpタグを表示するかどうか
@@ -17,7 +17,7 @@ config =
 
     ogSiteName: 'line drawing by trochoid'
 
-    ogImage: 'https://takumi0125.github.io/lineDrawingByTrochoid/assets/img/ogp2d.png'
+    ogImage: 'https://takumi0125.github.io/lineDrawingByTrochoid/assets/img/ogp3d.png'
     ogImageType: 'image/png'
     ogImageWidth: '1200'
     ogImageHeight: '630'
@@ -51,16 +51,16 @@ config =
     manifestJson: '/assets/img/icon/manifest.json'
 
   develop:
-    siteUrl: 'https://takumi0125.github.io/lineDrawingByTrochoid/2d/'
-    ogImage: 'https://takumi0125.github.io/lineDrawingByTrochoid/assets/img/ogp2d.png'
+    siteUrl: 'https://takumi0125.github.io/lineDrawingByTrochoid/3d/'
+    ogImage: 'https://takumi0125.github.io/lineDrawingByTrochoid/assets/img/ogp3d.png'
 
   staging:
-    siteUrl: 'https://takumi0125.github.io/lineDrawingByTrochoid/2d/'
-    ogImage: 'https://takumi0125.github.io/lineDrawingByTrochoid/assets/img/ogp2d.png'
+    siteUrl: 'https://takumi0125.github.io/lineDrawingByTrochoid/3d/'
+    ogImage: 'https://takumi0125.github.io/lineDrawingByTrochoid/assets/img/ogp3d.png'
 
   production:
-    siteUrl: 'https://takumi0125.github.io/lineDrawingByTrochoid/2d/'
-    ogImage: 'https://takumi0125.github.io/lineDrawingByTrochoid/assets/img/ogp2d.png'
+    siteUrl: 'https://takumi0125.github.io/lineDrawingByTrochoid/3d/'
+    ogImage: 'https://takumi0125.github.io/lineDrawingByTrochoid/assets/img/ogp3d.png'
 
 
 module.exports = (env) ->
